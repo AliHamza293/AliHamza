@@ -139,7 +139,24 @@ export default function Projects() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("/api/projects").then(r => r.json()).then(setProjects).finally(() => setLoading(false));
+    // Load from localStorage first (admin saves here), fallback to API seed data
+    try {
+      const stored = localStorage.getItem("pf_projects");
+      if (stored) {
+        const data = JSON.parse(stored);
+        if (Array.isArray(data) && data.length > 0) {
+          setProjects(data.sort((a: Project, b: Project) => a.order - b.order));
+          setLoading(false);
+          return;
+        }
+      }
+    } catch {}
+    // Fallback: load from API
+    fetch("/api/projects")
+      .then(r => r.json())
+      .then(data => setProjects(data))
+      .catch(() => {})
+      .finally(() => setLoading(false));
   }, []);
 
   return (

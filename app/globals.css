@@ -36,6 +36,16 @@ body {
   cursor: none;
 }
 
+/* Admin panel and blog pages use normal cursor */
+body.normal-cursor,
+body.normal-cursor * {
+  cursor: auto !important;
+}
+body.normal-cursor .cursor,
+body.normal-cursor .cursor-ring {
+  display: none !important;
+}
+
 /* ─── CUSTOM CURSOR ─── */
 .cursor {
   position: fixed;
