@@ -36,15 +36,19 @@ body {
   cursor: none;
 }
 
-/* Admin panel and blog pages use normal cursor */
-body.normal-cursor,
-body.normal-cursor * {
-  cursor: auto !important;
-}
+/* Admin, blog, and all non-portfolio pages - restore normal cursor */
+body.normal-cursor { cursor: auto !important; }
+body.normal-cursor * { cursor: auto !important; }
+body.normal-cursor button,
+body.normal-cursor a { cursor: pointer !important; }
+body.normal-cursor input,
+body.normal-cursor textarea,
+body.normal-cursor select { cursor: text !important; }
+body.normal-cursor input[type=button],
+body.normal-cursor input[type=submit],
+body.normal-cursor input[type=file] { cursor: pointer !important; }
 body.normal-cursor .cursor,
-body.normal-cursor .cursor-ring {
-  display: none !important;
-}
+body.normal-cursor .cursor-ring { display: none !important; opacity: 0 !important; pointer-events: none !important; }
 
 /* ─── CUSTOM CURSOR ─── */
 .cursor {
